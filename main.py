@@ -6,7 +6,7 @@ from pandas.api.types import (
     is_numeric_dtype,
     is_object_dtype,
 )
-
+st.set_page_config(layout="wide")
 
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -86,8 +86,8 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 
 df = pd.read_csv("idh.csv")
-df["IDHM 2010"] = df["IDHM 2010"].astype(float)
-df["IDHM Renda 2010"] = df["IDHM Renda 2010"].astype(float)
-df["IDHM Longevidade 2010"] = df["IDHM Longevidade 2010"].astype(float)
-df["IDHM Educação 2010"] = df["IDHM Educação 2010"].astype(float)
-st.dataframe(filter_dataframe(df))
+df["IDHM 2010"] = df["IDHM 2010"].str.replace(',', '.').astype(float)
+df["IDHM Renda 2010"] = df["IDHM Renda 2010"].str.replace(',', '.').astype(float)
+df["IDHM Longevidade 2010"] = df["IDHM Longevidade 2010"].str.replace(',', '.').astype(float)
+df["IDHM Educação 2010"] = df["IDHM Educação 2010"].str.replace(',', '.').astype(float)
+st.dataframe(filter_dataframe(df), use_container_width=True)
