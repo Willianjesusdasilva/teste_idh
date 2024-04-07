@@ -7,15 +7,6 @@ from pandas.api.types import (
     is_object_dtype,
 )
 
-st.title("Auto Filter Dataframes in Streamlit")
-
-st.write(
-    """This app accomodates the blog [here](https://blog.streamlit.io/auto-generate-a-dataframe-filtering-ui-in-streamlit-with-filter_dataframe/)
-    and walks you through one example of how the Streamlit
-    Data Science Team builds add-on functions to Streamlit.
-    """
-)
-
 
 def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -95,4 +86,8 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
 
 
 df = pd.read_csv("idh.csv")
+df["IDHM 2010"] = df["IDHM 2010"].astype(float)
+df["IDHM Renda 2010"] = df["IDHM Renda 2010"].astype(float)
+df["IDHM Longevidade 2010"] = df["IDHM Longevidade 2010"].astype(float)
+df["IDHM Educação 2010"] = df["IDHM Educação 2010"].astype(float)
 st.dataframe(filter_dataframe(df))
