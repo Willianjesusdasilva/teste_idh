@@ -91,5 +91,5 @@ df["IDHM Renda 2010"] = df["IDHM Renda 2010"].str.replace(',', '.').astype(float
 df["IDHM Longevidade 2010"] = df["IDHM Longevidade 2010"].str.replace(',', '.').astype(float)
 df["IDHM Educação 2010"] = df["IDHM Educação 2010"].str.replace(',', '.').astype(float)
 df['Estado'] = df['Município'].str.extract(r'\((\w+)\)')
-df = df.drop('Ranking', axis=1)
+df = df.drop('Ranking')
 st.dataframe(filter_dataframe(df), use_container_width=True)
