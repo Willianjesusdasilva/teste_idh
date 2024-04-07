@@ -44,7 +44,7 @@ def filter_dataframe(df: pd.DataFrame) -> pd.DataFrame:
             left, right = st.columns((1, 20))
             left.write("↳")
             # Treat columns with < 10 unique values as categorical
-            if is_categorical_dtype(df[column]) or df[column].nunique() < 10:
+            if is_categorical_dtype(df[column]) or df[column].nunique() < 30:
                 user_cat_input = right.multiselect(
                     f"Values for {column}",
                     df[column].unique(),
@@ -91,5 +91,5 @@ df["IDHM Renda 2010"] = df["IDHM Renda 2010"].str.replace(',', '.').astype(float
 df["IDHM Longevidade 2010"] = df["IDHM Longevidade 2010"].str.replace(',', '.').astype(float)
 df["IDHM Educação 2010"] = df["IDHM Educação 2010"].str.replace(',', '.').astype(float)
 df['Estado'] = df['Município'].str.extract(r'\((\w+)\)')
-df = df.drop('Ranking')
+del df['Ranking IDHM 2010']
 st.dataframe(filter_dataframe(df), use_container_width=True)
